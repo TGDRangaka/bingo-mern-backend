@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/images', express.static('./assets/images/'));
-app.use('/user', userRoute)
+app.use('/api/user', userRoute)
 app.use('/item', itemRoute)
 
 

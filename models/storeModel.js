@@ -4,5 +4,15 @@ module.exports = mongoose.model('Store', mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: true,
+        default: 'images/store.png'
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 }));

@@ -6,6 +6,7 @@ class UserController {
     }
 
     save(user){
+        console.log(user);
         return new User(user).save();
     }
 

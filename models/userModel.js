@@ -55,17 +55,5 @@ module.exports = mongoose.model('User', mongoose.Schema({
         },
         required: false,
         default: null
-    },
-    storeId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Store',
-        required: true,
-        default: null
-    },
-    cartId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cart',
-        required: true,
-        default: null
     }
 }));

@@ -5,12 +5,16 @@ class ItemModel {
         return Item.find();
     }
 
+    getItem(id){
+        return Item.findById(id);
+    }
+
     save(item){
         return new Item(item).save();
     }
 
-    getSaleItems(){
-        return 
+    getDiscounts() {
+        return Item.find({ discount: { $gte: 20 } });
     }
 }
 
