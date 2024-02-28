@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const userRoute = require('./routes/userRoute');
 const colors = {reset: "\x1b[0m",green: "\x1b[32m",yellow: "\x1b[33m" };
 
@@ -11,6 +12,7 @@ app.use(function(req, res, next) {
     console.log(colors.yellow + req.method + '  ' + colors.green + req.url + colors.reset);
     next();
 });
+app.use(cors());
 app.use(express.json());
 app.use('/user', userRoute)
 
