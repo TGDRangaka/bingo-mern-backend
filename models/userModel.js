@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-const userSchema = mongoose.Schema({
+module.exports = mongoose.model('User', mongoose.Schema({
     firstName: {
         type: String,
         required: true
@@ -36,7 +35,8 @@ const userSchema = mongoose.Schema({
                 required: true
             }
         },
-        required: false
+        required: false,
+        default: null
     },
     creditCard: {
         type: {
@@ -53,10 +53,19 @@ const userSchema = mongoose.Schema({
                 required: true
             }
         },
-        required: false
+        required: false,
+        default: null
+    },
+    storeId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Store',
+        required: true,
+        default: null
+    },
+    cartId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Cart',
+        required: true,
+        default: null
     }
-})
-
-const User = mongoose.model('Users', userSchema);
-
-module.exports = User;
+}));
