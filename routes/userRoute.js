@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  User.save(req.body).then(result => res.status(200).json({ succses: true, _id: result._id}))
+  User.save(req.body).then(result => res.status(200).json({ succses: true, data: result}))
   .catch(err => res.status(500).json({succses:false, err: err}))
 })
 

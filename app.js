@@ -5,6 +5,8 @@ const colors = {reset: "\x1b[0m",green: "\x1b[32m",yellow: "\x1b[33m" };
 
 const userRoute = require('./routes/userRoute');
 const itemRoute = require('./routes/itemRoute');
+const cartRoute = require('./routes/cartRoute');
+const storeRoute = require('./routes/storeRoute');
 
 const app = express();
 const port = 3000;
@@ -21,6 +23,8 @@ app.use(express.json());
 app.use('/images', express.static('./assets/images/'));
 app.use('/api/user', userRoute)
 app.use('/item', itemRoute)
+app.use('/cart', cartRoute)
+app.use('/store', storeRoute)
 
 
 mongoose.connect(uri)
