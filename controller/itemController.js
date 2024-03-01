@@ -6,7 +6,7 @@ class ItemModel {
     }
 
     getItem(id){
-        return Item.findById(id);
+        return Item.findById(id).populate('store', 'name');
     }
 
     save(item){

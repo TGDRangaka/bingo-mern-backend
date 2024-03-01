@@ -17,9 +17,19 @@ router.post('/', (req, res) => {
 .catch(err => res.status(500).json({err: err}))
 });
 
-router.put('/:id', (req, res) => {
+router.put('/add/:id', (req, res) => {
     Cart.addItemToCart(req.params.id, req.body).then(data => res.status(200).json({data: data}))
 .catch(err => res.status(500).json({err: err}))
 });
+
+router.put('/items/:cartId', (req, res) => {
+    Cart.updateCartItems(req.params.cartId, req.body).then(data => res.status(200).json({data: data}))
+ .catch(err => res.status(500).json({err: err}))
+})
+
+router.delete('/:cartId/:itemId', (req, res) => {
+    Cart.deleteItem(req.params.cartId, req.params.itemId).then(data => res.status(200).json({succses: true}))
+    .catch(err => res.status(500).json({err: err}));
+})
 
 module.exports = router;

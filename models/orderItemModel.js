@@ -15,10 +15,23 @@ module.exports = mongoose.model('Order_Item', mongoose.Schema({
         type: Number,
         required: true
     },
-    review: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Review',
+    isReviewed: {
+        type: Boolean,
         required: true,
-        default: null
+        default: false
+    },
+    review: {
+        name: {
+            type: String,
+            required: true
+        },
+        comment: {
+            type: String,
+            required: true
+        },
+        rating: {
+            type: Number,
+            required: true
+        }
     }
 }));

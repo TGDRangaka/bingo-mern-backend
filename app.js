@@ -7,6 +7,7 @@ const userRoute = require('./routes/userRoute');
 const itemRoute = require('./routes/itemRoute');
 const cartRoute = require('./routes/cartRoute');
 const storeRoute = require('./routes/storeRoute');
+const orderItemRoute = require('./routes/orderItemRoute');
 
 const app = express();
 const port = 3000;
@@ -25,6 +26,7 @@ app.use('/api/user', userRoute)
 app.use('/item', itemRoute)
 app.use('/cart', cartRoute)
 app.use('/store', storeRoute)
+app.use('/order-items', orderItemRoute)
 
 
 mongoose.connect(uri)

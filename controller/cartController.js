@@ -31,6 +31,26 @@ class CartController{
         console.log(cart);
         return new Cart(cart).save();
     }
+
+    deleteItem(cartId, itemId){
+        return Cart.findById(cartId).then(cart => {
+            const items = cart.items;
+            items.map(item => {
+                if(item.itemId.toString() === itemId.toString()){
+                    items.splice(items.indexOf(item), 1);
+                }
+            })
+            return new Cart(cart).save()
+        }).catch(err => {return err});
+    }
+
+    updateCartItems(cartId, items){
+        return Cart.findByIdAndUpdate(
+            cartId,
+            { $set: { items: items } },
+            { new: true }
+          );
+    }
 }
 
 module.exports = new CartController();
