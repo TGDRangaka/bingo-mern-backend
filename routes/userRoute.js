@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  User.save(req.body).then(result => res.status(200).json({ succses: true, data: result}))
+  User.register(req.body).then(result => res.status(200).json({ succses: true, data: result}))
   .catch(err => res.status(500).json({succses:false, err: err}))
 })
 
@@ -28,7 +28,7 @@ router.delete('/:id', function(req, res) {
 })
 
 router.get('/:username/:password', (req, res) => {
-  User.checkValidity(req.params.username, req.params.password).
+  User.login(req.params.username, req.params.password).
   then(result => {
     result ? 
     res.status(200).json({ succses: true, data: result})
