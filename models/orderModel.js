@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
 module.exports = mongoose.model('Order', mongoose.Schema({
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users',
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
+    orderItems: {
+        type: Array,
+        required: true
     },
     total: {
         type: Number,

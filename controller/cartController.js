@@ -51,6 +51,13 @@ class CartController{
             { new: true }
           );
     }
+
+    clearCart(userId){
+        return Cart.updateOne(
+            {userId: userId},
+            { $set: { items: [] } }
+          )
+    }
 }
 
 module.exports = new CartController();

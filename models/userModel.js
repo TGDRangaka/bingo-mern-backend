@@ -44,7 +44,11 @@ module.exports = mongoose.model('User', mongoose.Schema({
                 type: String,
                 required: true
             },
-            expiration: {
+            expiryMonth: {
+                type: String,
+                required: true
+            },
+            expiryYear: {
                 type: String,
                 required: true
             },
