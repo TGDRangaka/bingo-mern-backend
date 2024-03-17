@@ -17,8 +17,21 @@ router.get('/:userId', (req, res) => {
     })
 });
 
+router.get('/reviews/:itemId', (req, res) => {
+    Order.getReviewsByItemId(req.params.itemId).then(data => res.status(200).json({data: data}))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({err: err})
+    })
+});
+
 router.put('/', (req, res) => {
     Order.updateOrder(req.body).then(data => res.status(200).json({data: data}))
+   .catch(err => console.log(err));
+})
+
+router.put('/review', (req, res) => {
+    Order.saveReview(req.body).then(data => res.status(200).json({data: data}))
    .catch(err => console.log(err));
 })
 
