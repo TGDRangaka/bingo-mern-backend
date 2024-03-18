@@ -9,8 +9,9 @@ class StoreController {
         return Store.findOne({userId: userId});
     }
 
-    save(store){
-        return new Store(store).save();
+    save(body, imageFile){
+        body = {...body, image: imageFile.destination + imageFile.filename}
+        return new Store(body).save();
     }
 }
 
