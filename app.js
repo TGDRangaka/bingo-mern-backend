@@ -34,3 +34,21 @@ mongoose.connect(uri)
 .catch(err => console.log('Error connecting : ' + err.message));
 
 app.listen(port, () => console.log('Server listening on port ' + port));
+
+const fs = require('fs');
+const path = require('path');
+
+function deleteImage(imagePath) {
+    const fullPath = path.join(__dirname, 'assets', 'images', imagePath);
+
+    // Check if the file exists
+    if (fs.existsSync(fullPath)) {
+        // Delete the file
+        fs.unlinkSync(fullPath);
+        console.log(`Image ${imagePath} deleted successfully.`);
+    } else {
+        console.log(`Image ${imagePath} does not exist.`);
+    }
+}
+
+// deleteImage('1710759395066-sun.jpg');

@@ -16,6 +16,10 @@ class ItemModel {
     getDiscounts() {
         return Item.find({ discount: { $gte: 20 } });
     }
+
+    inactiveItemsByStoreId(storeId){
+        return Item.updateMany({store: storeId, isActive: false});
+    }
 }
 
 module.exports = new ItemModel();

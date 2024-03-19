@@ -37,6 +37,11 @@ const itemSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    isActive: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
     store: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Store",

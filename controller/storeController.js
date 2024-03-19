@@ -1,4 +1,6 @@
-const Store = require('../models/storeModel')
+const Store = require('../models/storeModel');
+const Item = require('../controller/itemController');
+const deleteImage = require('../util/utilMatters');
 
 class StoreController {
     getAll(){
@@ -12,6 +14,22 @@ class StoreController {
     save(body, imageFile){
         body = {...body, image: imageFile.destination + imageFile.filename}
         return new Store(body).save();
+    }
+
+    async update(id, body, imageFile){
+        const prevStore = await Store.findById(id);
+        body = {...body, image: imageFile.destination + imageFile.filename}
+        return Store.findByIdAndUpdate(id, body).then(data => {
+            const ar = prevStore.image.split('/');
+            deleteImage(ar[ar.length-1]);
+            return data;
+        });
+    }
+
+    async delete(id){
+        // set availability to false for store items
+        await Item.inactiveItemsByStoreId(id);
+        return Store.findByIdAndDelete(id);
     }
 }
 

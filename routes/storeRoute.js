@@ -25,11 +25,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.post('/', upload.single('image'), async (req, res) => {
-    console.log(req.body);
-    console.log(req.file.destination + req.file.filename);
-
     Store.save(req.body, req.file).then(data => res.status(200).json({succses: true, data: data}))
 .catch(err => res.status(500).json({err: err}))
+});
+
+router.put('/:storeId', upload.single('image'), async (req, res) => {
+    Store.update(req.params.storeId, req.body, req.file).then(data => res.status(200).json({succses: true, data: data}))
+.catch(err => res.status(500).json({err: err}))
+});
+
+router.delete('/:storeId', (req, res) => {
+    Store.delete(req.params.storeId).then(data => res.status(200).json({succses: true}))
+ .catch(err => res.status(500).json({err: err}))
 })
 
 module.exports = router;
