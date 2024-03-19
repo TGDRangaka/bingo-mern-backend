@@ -16,8 +16,7 @@ const itemSchema = mongoose.Schema({
     },
     stock: {
         type: Number,
-        required: true,
-        default: 1
+        required: true
     },
     rating: {
         type: Number,
