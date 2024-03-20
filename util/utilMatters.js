@@ -6,9 +6,9 @@ function deleteImage(imagePath) {
     if (fs.existsSync(fullPath)) {
         // Delete the file
         fs.unlinkSync(fullPath);
-        // console.log(`Image ${imagePath} deleted successfully.`);
+        console.log(`Image ${imagePath} deleted successfully.`);
     } else {
-        // console.log(`Image ${imagePath} does not exist.`);
+        console.log(`Image ${imagePath} does not exist.`);
     }
 }
 

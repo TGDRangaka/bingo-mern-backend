@@ -58,6 +58,10 @@ class CartController{
             { $set: { items: [] } }
           )
     }
+
+    removeItemFromAllCarts(itemId){
+        return Cart.find().then(carts => Promise.all(carts.map(cart => this.deleteItem(cart._id, itemId))));
+    }
 }
 
 module.exports = new CartController();

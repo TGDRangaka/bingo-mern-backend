@@ -20,8 +20,7 @@ class StoreController {
         const prevStore = await Store.findById(id);
         body = {...body, image: imageFile.destination + imageFile.filename}
         return Store.findByIdAndUpdate(id, body).then(data => {
-            const ar = prevStore.image.split('/');
-            deleteImage(ar[ar.length-1]);
+            deleteImage(prevStore.image);
             return data;
         });
     }
