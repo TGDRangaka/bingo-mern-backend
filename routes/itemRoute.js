@@ -5,7 +5,7 @@ const multer = require('multer');
 
 router.get('/all', (req, res) => {
     Item.getAll()
-    .then(data => res.status(200).json({data: data}))
+    .then(data => {res.status(200).json({data: data})})
     .catch(err => res.status(500).json({err: err}))
 })
 
@@ -52,6 +52,12 @@ router.put('/active/:itemId', (req, res) => {
     Item.setItemActive(req.params.itemId)
     .then(data => res.status(200).json({succses: true, data: data}))
     .catch(err => res.status(500).json({err: err}))
+})
+
+router.put('/active/all/true', (req, res) => {
+  Item.setItemsActiveAll()
+  .then(data => res.status(200).json({succses: true, data: data}))
+  .catch(err => res.status(500).json({err: err}))
 })
 
 router.delete('/:itemId', (req, res) => {

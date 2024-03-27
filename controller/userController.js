@@ -35,7 +35,7 @@ class UserController {
                     })
                 })
             }else{
-                return {user: null, cart: null, store: null}
+                return Error
             }
         })
     }

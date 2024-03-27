@@ -34,7 +34,7 @@ class ItemModel {
     }
 
     inactiveItemsByStoreId(storeId){
-        return Item.updateMany({store: storeId, isActive: false});
+        return Item.updateMany({store: storeId}, {$set: {isActive: false}});
     }
 
     setItemActive(itemId){
@@ -43,10 +43,14 @@ class ItemModel {
         })
     }
 
+    setItemsActiveAll(){
+        return Item.updateMany({isActive: false}, {$set: {isActive: true}});
+    }
+
     delete(itemId){
         return Cart.removeItemFromAllCarts(itemId).then(data => {
-            return Item.findById(itemId).then(data => {
-                deleteImage(data.image);
+            return Item.findById(itemId).then(item => {
+                deleteImage(item.image);
                 return Item.findByIdAndDelete(itemId);
             });
         })
