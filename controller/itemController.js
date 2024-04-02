@@ -15,6 +15,10 @@ class ItemModel {
         return Item.find({ discount: { $gte: 20 }, stock: { $gte: 1} , isActive: true});
     }
 
+    getByCategory(category){
+        return Item.find({category: category, stock: { $gte: 1} , isActive: true});
+    }
+
     getStoreItems(storeId){
         return Item.find({store: storeId});
     }
@@ -26,9 +30,10 @@ class ItemModel {
 
     async update(itemId, body, imageFile){
         const prevItem = await Item.findById(itemId);
-        body = {...body, image: imageFile.filename}
+        imageFile ? body = {...body, image: imageFile.filename}
+        : body = {...body, image: prevItem.image}
         return Item.findByIdAndUpdate(itemId, body).then(data => {
-            deleteImage(prevItem.image);
+            imageFile && deleteImage(prevItem.image);
             return data;
         })
     }

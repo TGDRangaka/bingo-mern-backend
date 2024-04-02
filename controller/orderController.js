@@ -35,7 +35,9 @@ class OrderItemController {
     }
 
     async updateOrder(order){
-        if(order.status === 'Received') await Item.findByIdAndUpdate(order.itemId, { $inc: { sold: 1 } });
+        if(order.status === 'Received'){
+            await Item.findByIdAndUpdate(order.itemId, { $inc: { sold: order.qty, stock: -order.qty } });
+        } 
         return Order.findByIdAndUpdate(order._id, {$set: order});
     }
 
