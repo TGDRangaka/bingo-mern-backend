@@ -18,9 +18,10 @@ class StoreController {
 
     async update(id, body, imageFile){
         const prevStore = await Store.findById(id);
-        body = {...body, image: imageFile.filename}
+        imageFile ? body = {...body, image: imageFile.filename}
+        : body = {...body, image: prevStore.image}
         return Store.findByIdAndUpdate(id, body).then(data => {
-            deleteImage(prevStore.image);
+            imageFile && deleteImage(prevStore.image);
             return data;
         });
     }
