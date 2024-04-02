@@ -9,7 +9,7 @@ router.get('/', (req, res) =>{
 })
 
 router.get('/:id', (req, res) => {
-    Store.getStoreByUser(req.params.id).then(data => res.status(200).json({data: data}))
+    Store.getByStoreId(req.params.id).then(data => res.status(200).json({data: data}))
 .catch(err => res.status(500).json({err: err}))
 })
 

@@ -7,6 +7,10 @@ class StoreController {
         return Store.find();
     }
 
+    getByStoreId(storeId){
+        return Store.findById(storeId);
+    }
+
     getStoreByUser(userId){
         return Store.findOne({userId: userId});
     }
