@@ -4,6 +4,11 @@ class CartController{
 
     getCart(userId){
         return Cart.findOne({userId: userId})
+        // return Cart.findOne({userId: userId})
+        //     .populate({
+        //         path: 'items.itemId',
+        //         match: { isActive: true } // Filter the items by isActive field
+        //     })
     }
 
     getAll(){

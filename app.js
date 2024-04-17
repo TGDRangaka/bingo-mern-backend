@@ -11,7 +11,7 @@ const orderRoute = require('./routes/orderRoute');
 
 const app = express();
 const port = 3000;
-const uri = 'mongodb+srv://tgdilshanrangaka:wOuteCwo34Xolw15@cluster0.vllnh4g.mongodb.net/bingo?retryWrites=true&w=majority&appName=Cluster0';
+const uri = 'mongodb+srv://tgdilshanrangaka:wOuteCwo34Xolw15@cluster0.vllnh4g.mongodb.net/bingo1?retryWrites=true&w=majority&appName=Cluster0';
 
 app.use(function(req, res, next) {
     console.log(colors.yellow + req.method + '  ' + colors.green + req.url + colors.reset);

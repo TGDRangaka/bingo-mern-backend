@@ -33,13 +33,19 @@ router.get('/store/:storeId', (req, res) => {
   .catch(err => res.status(500).json({err: err}))
 })
 
+router.get('/search/:keyword', (req, res) => {
+  Item.getByName(req.params.keyword)
+  .then(data => res.status(200).json({data: data}))
+  .catch(err => res.status(500).json({err: err}))
+})
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, 'assets/images/')
   },
   filename: function (req, file, cb) {
       const uniqueSuffix = Date.now()
-      cb(null, uniqueSuffix + '-' + file.originalname)
+      cb(null, 'item_' + uniqueSuffix + '.png')
   }
 })
 const upload = multer({ storage: storage })

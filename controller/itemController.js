@@ -23,6 +23,10 @@ class ItemModel {
         return Item.find({store: storeId});
     }
 
+    getByName(keyword){
+        return Item.find({name: {$regex: keyword, $options: 'i'}});
+    }
+
     save(body, imageFile){
         body = {...body, image: imageFile.filename}
         return new Item(body).save();
